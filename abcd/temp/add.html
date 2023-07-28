@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% include 'nav.html' %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label>Name:</label>      <input type="text" name="name" placeholder="name">
+    <label>DOB:</label>       <input type="date" name="dob" placeholder="Date of birth">
+    <label>Age:</label>       <input type="number" name="age" placeholder="Age">
+    <label>Gender:</label>
+          <input type="radio" name="gender" value="m" placeholder="Gender"><label>male</label>
+          <input type="radio" name="gender" value="f" placeholder="Gender"><label>female</label>
+    <label>Phone:</label>     <input type="number" name="phone" placeholder="Phone">
+    <label>Email:</label>     <input type="email" name="mail" placeholder="email">
+    Department <select name="dept" id="slct1">
+        <option value="" selected="selected">------------------</option>
+
+      </select>
+
+    Course:    <select name="course" id="slct2">Select department</select>
+
+    <!--Purpose:   <select name="a" >-->
+    <!--    <option value="Enquiry" selected="selected">Enquiry</option>-->
+    <!--    <option value="Place Order" >Place Order</option>-->
+    <!--    <option value="Return">Return</option>-->
+    <!--  </select>-->
+<!--    <label>Pen</label>        <input type="checkbox" value="pen" name="check[]">-->
+<!--    <label>Note Book</label>  <input type="checkbox" value="Notebook" name="check[]">-->
+<!--    <label>Exam Paper</label> <input type="checkbox" value="exam_paper" name="check[]"><br>-->
+        <input type="submit">
+
+</form>
+<script>
+    let species=["Engineering","science","Commerce","Humanities","Polytechnic"];
+    let eng=["Mechanical Engineering","Civil Engineering","Electronic engineering"];
+    let sci=["Biology","Physics","Bachelor of Pharmacy","Microbiology"];
+    let com=["BBA","BCA","B.Com"];
+    let hum=["History","Philosophy","Sociology","Political science"];
+    let poly=["Petroleum Engineering","Computer Engineering","Automobile Engineering"];
+    let slct1=document.getElementById("slct1");
+    let slct2=document.getElementById("slct2");
+
+ species.forEach(function addSpecies(item){
+    let option=document.createElement("option");
+    option.text=item;
+    option.value=item;
+    slct1.appendChild(option);
+    });
+slct1.onchange=function() {
+slct2.innerHTML = "<option>-------------------</option>";
+if (this.value=="Engineering"){
+addToslct2(eng);
+}
+if (this.value=="science") {
+addToslct2(sci);
+}
+if (this.value=="Commerce") {
+addToslct2(com);
+}
+if (this.value=="Humanities") {
+addToslct2(hum);
+}
+if (this.value=="Polytechnic") {
+addToslct2(poly);
+}
+}
+function addToslct2(arr){
+arr.forEach(function (item){
+    let option=document.createElement("option");
+    option.text=item;
+    option.value=item;
+    slct2.appendChild(option)
+    });
+    }
+
+
+</script>
+{% endblock %}

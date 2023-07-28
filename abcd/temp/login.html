@@ -1,0 +1,13 @@
+
+<body style="background-color:cyan">
+<form action="login" method="post">
+    {% csrf_token %}
+<pre><label>username:         </label><input type="text" name="username" placeholder="username"><br><label>Password:         </label><input type="password" name="password" placeholder="password">
+                  <input type="submit"></pre></form>
+<a href="/"><button>HOME</button></a>              <a href="/register"><button>Register</button></a>   </pre>
+
+{% for msg in messages %}
+{{msg}}
+{% endfor %}
+</body>
+
